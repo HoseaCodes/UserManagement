@@ -1,0 +1,327 @@
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 32rem;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 400;
+}
+/* rtl:begin:ignore */
+.marketing .col-lg-4 p {
+  margin-right: 0.75rem;
+  margin-left: 0.75rem;
+}
+/* rtl:end:ignore */
+
+.display-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  /* rtl:remove */
+  letter-spacing: -0.05rem;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
+}
+
+body {
+  background: #eee;
+  padding: 0%;
+}
+
+/* Component: Well */
+.well {
+  overflow: hidden;
+  border-radius: 0;
+  margin-bottom: 30px;
+}
+.well .well-heading .controls {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+}
+.well .well-body {
+  margin-top: 20px;
+  position: relative;
+  z-index: 3;
+}
+.well .well-image {
+  font-size: 90px;
+  line-height: 90px;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 1;
+  color: rgba(0, 0, 0, 0.15);
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+.well.well-solid {
+  color: white;
+}
+.well:hover .well-image {
+  font-size: 60px;
+}
+.well-white {
+  background-color: white;
+  color: #454545;
+}
+.well-blue {
+  background-color: #2980b9;
+  color: white;
+}
+.well-light-blue {
+  background-color: #3498db;
+  color: white;
+}
+.well-green {
+  background-color: #27ae60;
+  color: white;
+}
+.well-light-green {
+  background-color: #2ecc71;
+  color: white;
+}
+.well-orange {
+  background-color: #e82c0c;
+  color: white;
+}
+.well-light-orange {
+  background-color: #ff530d;
+  color: white;
+}
+.well-red {
+  background-color: #d40d12;
+  color: white;
+}
+.well-light-red {
+  background-color: #ff1d23;
+  color: white;
+}
+.well-purple {
+  background-color: #8e44ad;
+  color: white;
+}
+.well-light-purple {
+  background-color: #9b59b6;
+  color: white;
+}
+.well-pink {
+  background-color: #fe31ab;
+  color: white;
+}
+.well-light-pink {
+  background-color: #fd32c0;
+  color: white;
+}
+
+.mini-profile-widget .image-container .avatar {
+  width: 180px;
+  height: 180px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: white;
+  padding: 4px;
+  border: 1px solid #dddddd;
+}
+
+.btn-blue {
+  background-color: #3498db;
+  border-color: #3498db;
+  color: white;
+}
+.btn-blue:hover,
+.btn-blue:visited {
+  background-color: #2980b9;
+  color: white;
+}
+.btn-green {
+  background-color: #2ecc71;
+  border-color: #27ae60;
+  color: white;
+}
+.btn-green:hover,
+.btn-green:visited {
+  background-color: #27ae60;
+  color: white;
+}
+.btn-orange {
+  background-color: #ff530d;
+  border-color: #e82c0c;
+  color: white;
+}
+.btn-orange:hover,
+.btn-orange:visited {
+  background-color: #e82c0c;
+  color: white;
+}
+.btn-red {
+  background-color: #ff1d23;
+  border-color: #d40d12;
+  color: white;
+}
+.btn-red:hover,
+.btn-red:visited {
+  background-color: #d40d12;
+  color: white;
+}
+.btn-purple {
+  background-color: #9b59b6;
+  border-color: #8e44ad;
+  color: white;
+}
+.btn-purple:hover,
+.btn-purple:visited {
+  background-color: #8e44ad;
+  color: white;
+}
+.btn-pink {
+  background-color: #fd32c0;
+  border-color: #fe31ab;
+  color: white;
+}
+.btn-pink:hover,
+.btn-pink:visited {
+  background-color: #fe31ab;
+  color: white;
+}
+
+.upload {
+  max-width: 450px;
+  height: 500px;
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 20px;
+  position: relative;
+}
+
+#file-up {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+#file-up::before {
+  content: "+";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: white;
+  color: rgb(250, 200, 107);
+  font-size: 17rem;
+  text-align: center;
+  cursor: pointer;
+  margin: auto;
+}
+
+#file_img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+}
+
+#file_img img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+#file_img span {
+  position: absolute;
+  top: -13px;
+  right: -13px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: 900;
+  color: darkred;
+}
+
+.name {
+  display: inline;
+  padding: 0 15px 0 15px;
+  font-size: 3.5rem;
+  font-weight: 400;
+  text-shadow: 1px 1px 0 #888;
+  color: #ffffff;
+  font-family: "Montserrat";
+}
