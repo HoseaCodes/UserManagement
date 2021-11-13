@@ -24,8 +24,7 @@ yarn-error.log*
 build
 config.env
 
-config
-
+config/config.env
 node_modules
 
 package-lock.json
