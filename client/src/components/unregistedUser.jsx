@@ -22,7 +22,7 @@ const UnregisteredUsers = () => {
             <>
             {users.map((user) => {
                 return (
-                <div class="col-lg-6 display-row">
+                <div class="col-lg-5 user-display">
                     <img src={user.images || icon} alt="name" class="bd-placeholder-img rounded-circle" width="140" height="140"/>
                     <div class="content">
                         <ul class="brands brands-inline hidden-xs">
@@ -36,7 +36,7 @@ const UnregisteredUsers = () => {
                         </ul>       
                     </div>
                     <p>{user.bio}</p>
-                    <p><a class="btn btn-secondary" href={`/edit/${user._id}`}>Update profile &raquo;</a></p>
+                    {/* <p><a class="btn btn-secondary" href={`/user/${user._id}`}>View profile &raquo;</a></p> */}
                 </div>
             )
             })}

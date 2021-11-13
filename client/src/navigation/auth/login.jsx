@@ -25,6 +25,8 @@ const Login = () => {
 	};
 
 	return (
+		<main>
+
 		<div id="login-page-container">
 			<div className="login-page">
 				<form onSubmit={(e) => handleSubmit(e)}>
@@ -39,7 +41,7 @@ const Login = () => {
 						placeholder="Your e-mail address"
 						value={currentUser.email}
 						onChange={onChangeInput}
-					/>
+						/>
 					<label htmlFor="password">Password</label>
 					<input
 						type="password"
@@ -50,7 +52,7 @@ const Login = () => {
 						placeholder="Enter your password"
 						value={currentUser.password}
 						onChange={onChangeInput}
-					/>
+						/>
 
 					<div className="row">
 						<button type="submit">Login</button>
@@ -61,6 +63,7 @@ const Login = () => {
 				</form>
 			</div>
 		</div>
+		</main>
 	);
 };
 

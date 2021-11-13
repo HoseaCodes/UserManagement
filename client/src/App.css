@@ -43,13 +43,19 @@
 
 .display-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   padding-top: 4%;
   padding-bottom: 4%;
 }
 
+.user-display {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 /* Featurettes
 ------------------------- */
 
@@ -319,9 +325,18 @@ body {
 .name {
   display: inline;
   padding: 0 15px 0 15px;
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   font-weight: 400;
   text-shadow: 1px 1px 0 #888;
   color: #ffffff;
   font-family: "Montserrat";
+  width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.content {
+  display: flex;
 }
