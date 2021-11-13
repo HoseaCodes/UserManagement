@@ -64,6 +64,8 @@
     "vary": "^1.1.2"
   },
   "scripts": {
+    "client  " : "cd client && npm run start",
+    "build" : "cd client && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
