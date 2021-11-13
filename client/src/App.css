@@ -93,11 +93,6 @@
   }
 }
 
-body {
-  background: #eee;
-  padding: 0%;
-}
-
 /* Component: Well */
 .well {
   overflow: hidden;
