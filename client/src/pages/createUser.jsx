@@ -47,7 +47,7 @@ const CreateUser = () => {
                 headers: { 'content-type': 'multipart/form-data', Authorization: token }
             })
             setLoading(false)
-            setImages(res.data)
+            setImages(res.data.result)
 
         } catch (err) {
             alert(err.response.data.msg)
