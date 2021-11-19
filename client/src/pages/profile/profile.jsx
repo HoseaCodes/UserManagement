@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './profile.css';
 import { GlobalContext } from '../../context/globalState';
 import icon from '../../assets/usericon.jpeg';
+import SkeletonProfile from '../../components/skeleton/skeletonProfile';
 
 const Profile = () => {
     const { user, token, getUser, getRefreshToken } = useContext(GlobalContext)
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         
@@ -23,16 +25,32 @@ const Profile = () => {
         }
     }, [token]);
 
+     // Load this effect on mount
+    useEffect(() => {
+        setLoading(true);
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 5000);
+        // Cancel the timer while unmounting
+        return () => clearTimeout(timer);
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    }, []);
 
 
     console.log(user, 'user')
 
-    const { images, name, bio, email } = user;
+    const { name, bio, email } = user;
 
     if (user) {
         return (
             <>
-                <div class="container" style={{padding: "80px"}}>
+                {user && (   
+                    <SkeletonProfile/>
+                )}
+                {!user && (
+                    <div class="container" style={{padding: "80px"}}>
                     <div class="row">
                         <div class="col-lg-5 col-md-6">
                             <div class="mb-2">
@@ -61,6 +79,7 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
+                )}
             </>
         )
     } else {
