@@ -2,37 +2,17 @@ const Users = require('../models/user');
 const UnregisteredUser = require('../models/unregisteredUser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const authRole = require('../utils/role');
 
 const userCtrl = {
-    getUser,
     register,
     refreshToken,
     login,
-    updateProfile,
+    getUser,
+    getAllUsers,
     addProfile,
-    getAllUsers
-}
-
-async function getAllUsers(req, res) {
-    try {
-        const user = await Users.find();
-        const unregisteredUser = await UnregisteredUser.find();
-        if (!user) return res.status(400).json({ msg: "No users exist" });
-        const allUsers = [unregisteredUser, user]
-        res.json(allUsers);
-    } catch (err) {
-        return res.status(500).json({ msg: err.message });
-    }
-}
-
-async function getUser(req, res) {
-    try {
-        const user = await Users.findById(req.user.id).select("-password");
-        if (!user) return res.status(400).json({ msg: "User does not exist" });
-        res.json(user);
-    } catch (err) {
-        return res.status(500).json({ msg: err.message });
-    }
+    updateProfile,
+    deleteProfile,
 }
 
 async function register(req, res) {
@@ -91,10 +71,10 @@ async function login(req, res) {
         const { email, password } = req.body
 
         const user = await Users.findOne({ email })
-        if (!user) return res.status(400).json({ msh: "User does not exist." })
+        if (!user) return res.status(400).json({ msg: "User does not exist." })
 
         const isMatch = await bcrypt.compare(password, user.password)
-        if (!isMatch) return res.status(400).json({ msh: "Invalid password" })
+        if (!isMatch) return res.status(400).json({ msg: "Invalid password" })
 
         const accesstoken = createAccessToken({ id: user._id })
         const refreshtoken = createRefreshToken({ id: user._id })
@@ -103,7 +83,7 @@ async function login(req, res) {
             httpOnly: true,
             path: '/user/refresh_token'
         })
-        res.json({ status: "Success", accesstoken, user })
+        res.json({ status: "Success", accesstoken, data: user })
         // res.json({ msg: "Login successful" })
 
     } catch (err) {
@@ -111,19 +91,88 @@ async function login(req, res) {
     }
 }
 
+async function getAllUsers(req, res) {
+    try {
+        const user = await Users.find();
+        const unregisteredUser = await UnregisteredUser.find();
+        if (!user) return res.status(400).json({ msg: "No users exist" });
+        const allUsers = [unregisteredUser, user]
+        res.json(allUsers);
+    } catch (err) {
+        return res.status(500).json({ msg: err.message });
+    }
+}
+
+async function getUser(req, res) {
+    try {
+        const user = await Users.findById(req.user.id).select("-password");
+        let granted = true;
+        const access = ["basic", "supervisor","admin"];
+        granted = authRole(access, user);
+        if (!granted) {
+            return res.status(401).json({
+                error: "Not allowed: You don't have enough permission to perform this action"
+            });
+        }
+        if (!user) return res.status(400).json({ msg: "User does not exist" });
+        res.json(user);
+    } catch (err) {
+        return res.status(500).json({ msg: err.message });
+    }
+}
+
 async function updateProfile(req, res) {
     try {
-        const { name, email, createdAt, images, bio } = req.body;
-
+        const { name, email, role, createdAt, images, bio } = req.body;
+        const userId = req.params.id;
+        const newUser = await Users.findById(userId);
+        let granted = true;
+        const access = ["supervisor","admin"];
+        granted = authRole(access, newUser);
+        if (!granted) {
+            return res.status(401).json({
+                error: "Not allowed: You don't have enough permission to perform this action"
+            });
+        }
         const user = await Users.findOneAndUpdate({ _id: req.params.id }, {
-          images, bio, name, email, createdAt,
+          images, bio, role, name, email, createdAt,
         })
 
         res.json({
             status: 'Updated profile',
-            user
+            data: user
         })
     } catch (err) {
+
+        return res.status(500).json({ msg: err.message });
+    }
+}
+
+async function deleteProfile(req, res) {
+    try {
+        const userId = req.params.id;
+        const user = await Users.findById(userId);
+        let granted = true;
+        const access = ["admin"];
+        granted = authRole(access, user);
+        if (!granted) {
+            return res.status(401).json({
+                error: "Not allowed: You don't have enough permission to perform this action"
+            });
+        }
+        const permission = roles.can(user.role)['deleteAny']('profile');
+        if (!permission.granted) {
+            return res.status(401).json({
+                error: "You don't have enough permission to perform this action"
+            });
+        }
+        await User.findByIdAndDelete(userId);
+
+        res.status(200).json({
+        data: null,
+        message: 'User has been deleted'
+        });
+    }  catch (err) {
 
         return res.status(500).json({ msg: err.message });
     }
@@ -140,7 +189,7 @@ async function addProfile(req, res) {
         // Save mongodb
         await newUser.save()
 
-        res.json({ newUser, status: "Added Profile Successful" })
+        res.json({ data: newUser, status: "Added Profile Successful" })
 
     } catch (err) {
         return res.status(500).json({ msg: err.message })

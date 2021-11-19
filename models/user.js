@@ -20,6 +20,11 @@ const UserSchema = new mongoose.Schema({
     bio: {
         type: String
     },
+    role: {
+        type: String,
+        default: 'basic',
+        enum: ["basic", "supervisor", "admin"]
+    },
     createdAt: {
         type: Date,
         default: Date.now
