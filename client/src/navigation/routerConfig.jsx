@@ -19,15 +19,15 @@ export const RouterConfig = () => {
       <Navbar/>
       <Switch>
           {/* List all public routes */}
-          <Route exact path={ROOT} component={Home} />
-          <Route exact path={DETAILS} component={Details} />
-          <Route exact path={LOGIN} component={Login} />
-          <Route exact path={SIGNUP} component={Signup} />
-          <Route exact path={CREATE} component={CreateUser} />
-          <Route exact path={EDIT} component={EditUser} />
-          <Route exact path={PROFILE} component={Profile} />
+          <Route exact path={ROOT} render={() => <Home/>} />
+          <Route exact path={DETAILS} render={() => <Details/>} />
+          <Route exact path={LOGIN} render={() => <Login/>} />
+          <Route exact path={SIGNUP} render={() => <Signup/>} />
+          <Route exact path={CREATE} render={() => <CreateUser/>} />
+          <Route exact path={EDIT} render={() => <EditUser/>} />
+          <Route exact path={PROFILE} render={() => <Profile/>} />
           {/* List a generic 404-Not Found route here */}
-          <Route path="*" component={NotFound}/>
+          <Route path="*" render={() => <NotFound/>}/>
         </Switch>
       <Footer/>
       </div>
