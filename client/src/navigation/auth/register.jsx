@@ -48,6 +48,7 @@ const Register = () => {
 			setUser({...user, [name]: res.data.result.secure_url })
 			console.log(user)
         } catch (err) {
+            alert(err)
             alert(err.response.data.msg)
         }
     }

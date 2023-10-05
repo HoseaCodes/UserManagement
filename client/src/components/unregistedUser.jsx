@@ -1,15 +1,20 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import icon from '../assets/usericon.jpeg'
 import { GlobalContext } from '../context/globalState';
 
 const UnregisteredUsers = () => {
     const { user, getAllUsers} = useContext(GlobalContext);
+    const [allUsers, setAllUsers] = useState([{
+        _id: "",
+        name: "",
+    }])
     const users = user[0]
 
     useEffect(() => {
 
         async function render() {
-            await getAllUsers()
+            const res = await getAllUsers()
+            if (res) setAllUsers({allUsers})
         }
 
         render();
@@ -20,7 +25,7 @@ const UnregisteredUsers = () => {
     if (users) {
         return (
             <>
-            {users.map((user) => {
+            {allUsers.map((user) => {
                 return (
                 <div class="col-lg-5 user-display">
                     <img src={user.images || icon} alt="name" class="bd-placeholder-img rounded-circle" width="140" height="140"/>

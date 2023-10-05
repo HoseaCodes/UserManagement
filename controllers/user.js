@@ -180,18 +180,21 @@ async function deleteProfile(req, res) {
 
 async function addProfile(req, res) {
     try {
-        const { images, name, bio, } = req.body;
-
+        const { images, user } = req.body;
+        const { name, bio } = user
+        console.log(req.body)
         //Create new user instance
         const newUser = new UnregisteredUser({
             images, name, bio
         })
+        console.log(newUser)
         // Save mongodb
         await newUser.save()
 
-        res.json({ data: newUser, status: "Added Profile Successful" })
+        return res.json({ data: newUser, status: "Added Profile Successful" })
 
     } catch (err) {
+        console.log(err)
         return res.status(500).json({ msg: err.message })
     }
 }

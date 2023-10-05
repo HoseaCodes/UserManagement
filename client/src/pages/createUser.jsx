@@ -24,7 +24,7 @@ const CreateUser = () => {
 		try {
 			if (!images) return alert("No Image Upload")
 			setUser({ ...user, images })
-			addProfile(user);
+			addProfile({user, images});
 
 		} catch (error) {
 			alert(error.response.data.msg)
@@ -47,9 +47,10 @@ const CreateUser = () => {
                 headers: { 'content-type': 'multipart/form-data', Authorization: token }
             })
             setLoading(false)
-            setImages(res.data.result)
+            setImages(res.data.result.secure_url)
 
         } catch (err) {
+            alert(err)
             alert(err.response.data.msg)
         }
     }
@@ -85,7 +86,7 @@ const CreateUser = () => {
                                         <div id="file_img"><h3>Loading...</h3></div>
                                         :
                                         <div id="file_img" style={styleUpload}>
-                                            <img src={images ? images.url : ''} alt="" />
+                                            <img src={images ? images : ''} alt="" />
                                             <span onClick={handleDestory}>X</span>
                                         </div>
                                 }
