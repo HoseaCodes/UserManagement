@@ -76,7 +76,7 @@ const EditUser = () => {
             formData.append('file', file)
             setLoading(true)
 
-            const res = await axios.post(`${process.env.BACKEND}/api/upload`, formData, {
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND}/api/upload`, formData, {
                 headers: { 'content-type': 'multipart/form-data', Authorization: token }
             })
             setLoading(false)
@@ -91,7 +91,7 @@ const EditUser = () => {
 	const handleDestory = async e => {
         try {
             setLoading(true)
-            await axios.post(`${process.env.BACKEND}/api/destroy`, { public_id: images.public_id }, {
+            await axios.post(`${process.env.REACT_APP_BACKEND}/api/destroy`, { public_id: images.public_id }, {
                 headers: { Authorization: token }
 
             })
