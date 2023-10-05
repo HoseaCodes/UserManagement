@@ -12,9 +12,7 @@ function App() {
   return (
     <>
       <GlobalProvider>
-        //<BrowserRouter>
           <RouterConfig />
-       // </BrowserRouter>
       </GlobalProvider>
     </>
   );
