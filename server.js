@@ -7,8 +7,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const fileUpload = require("express-fileupload");
+const cors = require("cors");
 
-dotenv.config({ path: './config/config.env' })
+dotenv.config()
 connectDB();
 
 const app = express();
@@ -22,6 +23,8 @@ app.use(
 		useTempFiles: true,
 	})
 );
+app.use(cors({	origin: "*"	}));
+
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
