@@ -20,7 +20,7 @@ export const GlobalProvider = ({ children }) => {
     //Actions
     async function getUser(token) {
         try {
-            const res = await axios.get("/user/info", {
+            const res = await axios.get(`${process.env.BACKEND}/user/info`, {
                 headers: { Authorization: token },
             });
             dispatch({
@@ -38,7 +38,7 @@ export const GlobalProvider = ({ children }) => {
 
     async function getAllUsers() {
         try {
-            const res = await axios.get("/user");
+            const res = await axios.get(`${process.env.BACKEND}/user`);
             console.log(res.data)
             dispatch({
                 type: 'GET_ALL_USERS',
@@ -55,7 +55,7 @@ export const GlobalProvider = ({ children }) => {
 
     async function getRefreshToken() {
         try {
-            const res = await axios.get("/user/refresh_token");
+            const res = await axios.get(`${process.env.BACKEND}/user/refresh_token`);
             dispatch({
                 type: 'REFRSH_TOKEN',
                 payload: res.data.accesstoken
@@ -71,7 +71,7 @@ export const GlobalProvider = ({ children }) => {
 
     async function loginSubmit(user) {
         try {
-            const res = await axios.post("/user/login", user);
+            const res = await axios.post(`${process.env.BACKEND}/user/login`, user);
             localStorage.setItem("firstLogin", true);
             window.location.href = "/profile";
             dispatch({
@@ -91,7 +91,7 @@ export const GlobalProvider = ({ children }) => {
 
         try {
             console.log(user)
-            const res = await axios.post("/user/register", user );
+            const res = await axios.post(`${process.env.BACKEND}/user/register`, user );
             localStorage.setItem("firstLogin", true);
             window.location.href = "/";
             dispatch({
@@ -109,7 +109,7 @@ export const GlobalProvider = ({ children }) => {
 
     async function addProfile(user) {
         try {
-            const res = await axios.post('/user/create', user);
+            const res = await axios.post(`${process.env.BACKEND}/user/create`, user);
             window.location.href = "/";
             dispatch({
                 type: 'ADD_PROFILE',
@@ -125,7 +125,7 @@ export const GlobalProvider = ({ children }) => {
     }
     async function editProfile(id) {
         try {
-            const res = await axios.put(`/user/edit/${id}`);
+            const res = await axios.put(`${process.env.BACKEND}/user/edit/${id}`);
             window.location.href = "/";
             dispatch({
                 type: 'EDIT_PROFILE',

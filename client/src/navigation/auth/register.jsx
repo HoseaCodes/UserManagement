@@ -39,7 +39,7 @@ const Register = () => {
             formData.append('file', file)
             setLoading(true)
 
-            const res = await axios.post('/api/upload', formData, {
+            const res = await axios.post(`${process.env.BACKEND}/api/upload`, formData, {
                 headers: { 'content-type': 'multipart/form-data', Authorization: token }
             })
 		
@@ -55,7 +55,7 @@ const Register = () => {
 	const handleDestory = async e => {
         try {
             setLoading(true)
-            await axios.post('/api/destroy', { public_id: images.public_id }, {
+            await axios.post(`${process.env.BACKEND}/api/destroy`, { public_id: images.public_id }, {
                 headers: { Authorization: token }
 
             })
