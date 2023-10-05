@@ -2,7 +2,7 @@ const Users = require('../models/user');
 const UnregisteredUser = require('../models/unregisteredUser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const authRole = require('../utils/role');
+const authRole = require('../utils/authRole');
 
 const userCtrl = {
     register,

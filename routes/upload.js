@@ -3,12 +3,9 @@ const cloudinary = require("cloudinary");
 const fs = require("fs");
 
 cloudinary.config({
-	// cloud_name: process.env.CLOUD_NAME,
-	cloud_name: 'dwkt7zgrd',
-	// api_key: process.env.CLOUD_API_KEY,
-	api_key: "594284483817551",
-	// api_secret: process.env.CLOUD_API_SECRET,
-	api_secret: "6fQ2S6W6pbQodLg8Gbj6YuGyyZg",
+	cloud_name: process.env.CLOUD_NAME,
+	api_key: process.env.CLOUD_API_KEY,
+	api_secret: process.env.CLOUD_API_SECRET,
 });
 
 //image upload
