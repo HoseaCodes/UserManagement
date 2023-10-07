@@ -1,5 +1,5 @@
 import React from 'react';
-import { LOGIN, ROOT, SIGNUP } from "../navigation/constants";
+import { LOGIN, ROOT, SIGNUP, ALL, ADD } from "../navigation/constants";
 
 const Navbar = () => {
     return (
@@ -22,11 +22,17 @@ const Navbar = () => {
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href={LOGIN}>Login</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href={ALL}>All Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href={ADD}>Add User</a>
+                                </li>
                             </ul>
-                            {/* <form class="d-flex">
+                            <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                            </form> */}
+                            <button class="btn btn-outline-primary" type="submit">Search</button>
+                            </form>
                         </div>
                     </div>
                 </nav>

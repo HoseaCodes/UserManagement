@@ -5,3 +5,6 @@ export const SIGNUP = "/register";
 export const PROFILE = "/user/:id";
 export const CREATE = "/create";
 export const EDIT = "/edit/:id";
+export const EDIT2 = "/edita/:id";
+export const ALL = "/all";
+export const ADD = "/add";
