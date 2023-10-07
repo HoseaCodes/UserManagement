@@ -13,6 +13,11 @@ const userCtrl = {
     addProfile,
     updateProfile,
     deleteProfile,
+    getUsers, 
+    addUser, 
+    getUserById, 
+    editUser, 
+    deleteUser
 }
 
 async function register(req, res) {
@@ -199,6 +204,56 @@ async function addProfile(req, res) {
     }
 }
 
+async function getUsers(req, res) {
+    try{
+        const users = await Users.find();
+        res.status(200).json(users);
+    }catch( error ){
+        res.status(404).json({ message: error.message })
+    }
+}
+
+async function addUser(req, res) {
+    const user = req.body;
+    
+    const newUser = new User(user);
+    try{
+        await newUser.save();
+        res.status(201).json(newUser);
+    } catch (error){
+        res.status(409).json({ message: error.message});     
+    }
+}
+
+async function getUserById(req, res) {
+    try{
+        const user = await Users.findById(req.params.id);
+        res.status(200).json(user);
+    }catch( error ){
+        res.status(404).json({ message: error.message })
+    }
+}
+
+async function editUser(req, res) {
+    let user = req.body;
+
+    const editUser = new Users(user);
+    try{
+        await Users.updateOne({_id: req.params.id}, editUser);
+        res.status(201).json(editUser);
+    } catch (error){
+        res.status(409).json({ message: error.message});     
+    }
+}
+
+async function deleteUser(req, res) {
+    try{
+        await Users.deleteOne({_id: req.params.id});
+        res.status(201).json("User deleted Successfully");
+    } catch (error){
+        res.status(409).json({ message: error.message});     
+    }
+}
 
 const createAccessToken = (user) => {
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' })

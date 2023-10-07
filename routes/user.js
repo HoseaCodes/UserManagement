@@ -17,5 +17,15 @@ router.get('/refresh_token', userCtrl.refreshToken);
 
 router.get('/info', auth, userCtrl.getUser);
 
+router.get('/users', userCtrl.getUsers);
+
+router.post('/add', userCtrl.addUser);
+
+router.get('/:id', userCtrl.getUserById);
+
+router.put('/:id', userCtrl.editUser);
+
+router.delete('/:id', userCtrl.deleteUser);
+
 
 module.exports = router
