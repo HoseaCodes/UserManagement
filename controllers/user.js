@@ -216,7 +216,7 @@ async function getUsers(req, res) {
 async function addUser(req, res) {
     const user = req.body;
     
-    const newUser = new User(user);
+    const newUser = new Users(user);
     try{
         await newUser.save();
         res.status(201).json(newUser);

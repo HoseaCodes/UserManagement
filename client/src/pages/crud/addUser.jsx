@@ -19,7 +19,7 @@ const Container = styled(FormGroup)`
 
 const AddUser = () => {
     const [user, setUser] = useState(initialValue);
-    const { name, username, email, phone } = user;
+    const { name, username, email, phone, password } = user;
     
     let navigate = useHistory();
 
@@ -50,6 +50,10 @@ const AddUser = () => {
             <FormControl>
                 <InputLabel htmlFor="my-input">Phone</InputLabel>
                 <Input onChange={(e) => onValueChange(e)} name='phone' value={phone} id="my-input" />
+            </FormControl>
+            <FormControl>
+                <InputLabel htmlFor="my-input">Password</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='password' value={password} id="my-input" />
             </FormControl>
             <FormControl>
                 <Button variant="contained" color="primary" onClick={() => addUserDetails()}>Add User</Button>
