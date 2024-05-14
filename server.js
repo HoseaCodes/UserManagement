@@ -27,13 +27,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-//Mounted Routes
-const userRouter = require('./routes/user');
-const uploadRouter = require('./routes/upload');
-
-app.use('/user', userRouter);
-app.use("/api", uploadRouter);
-
 app.get("/health", (req, res) => {
   res.send({health: 200})
 })
