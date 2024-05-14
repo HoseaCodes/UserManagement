@@ -2,7 +2,6 @@ const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
-const connectDB = require("./config/database");
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -10,7 +9,6 @@ const fileUpload = require("express-fileupload");
 const cors = require("cors");
 
 dotenv.config()
-connectDB();
 
 const app = express();
 
