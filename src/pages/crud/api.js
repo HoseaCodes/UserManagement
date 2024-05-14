@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // const usersUrl = 'http://localhost:3003/users';
-const usersUrl = 'http://localhost:4000/user';
+// const usersUrl = "http://localhost:4000/user";
+const usersUrl = "https://storm-gate.net/api/user";
 
 export const getUsers = async (id) => {
     id = id || '';

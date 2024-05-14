@@ -20,8 +20,8 @@ export const GlobalProvider = ({ children }) => {
     //Actions
     async function getUser(token) {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BACKEND}/user/info`, {
-                headers: { Authorization: token },
+            const res = await axios.get(`https://storm-gate.net/api/user/info`, {
+                headers: { Authorization: token, 'Access-Control-Allow-Origin': '*' },
             });
             dispatch({
                 type: 'GET_USER',
@@ -38,7 +38,11 @@ export const GlobalProvider = ({ children }) => {
 
     async function getAllUsers() {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BACKEND}/user`);
+            const res = await axios.get(
+              `https://storm-gate.net/api/user`, {
+                headers: { 'Access-Control-Allow-Origin': '*' },
+            }
+            );
             console.log(res.data)
             dispatch({
                 type: 'GET_ALL_USERS',
@@ -55,7 +59,14 @@ export const GlobalProvider = ({ children }) => {
 
     async function getRefreshToken() {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BACKEND}/user/refresh_token`);
+            const res = await axios.get(
+              `https://storm-gate.net/api/user/refresh_token`,
+              {
+                headers: {
+                  "Access-Control-Allow-Origin": "*",
+                },
+              }
+            );
             dispatch({
                 type: 'REFRSH_TOKEN',
                 payload: res.data.accesstoken
@@ -71,7 +82,15 @@ export const GlobalProvider = ({ children }) => {
 
     async function loginSubmit(user) {
         try {
-            const res = await axios.post(`${process.env.REACT_APP_BACKEND}/user/login`, user);
+            const res = await axios.post(
+              `https://storm-gate.net/api/user/login`,
+              user,
+              {
+                headers: {
+                  "Access-Control-Allow-Origin": "*",
+                },
+              }
+            );
             localStorage.setItem("firstLogin", true);
             window.location.href = "/profile";
             dispatch({
@@ -91,7 +110,15 @@ export const GlobalProvider = ({ children }) => {
 
         try {
             console.log(user)
-            const res = await axios.post(`${process.env.REACT_APP_BACKEND}/user/register`, user );
+            const res = await axios.post(
+              `https://storm-gate.net/api/user/register`,
+              user,
+              {
+                headers: {
+                  "Access-Control-Allow-Origin": "*",
+                },
+              }
+            );
             localStorage.setItem("firstLogin", true);
             window.location.href = "/";
             dispatch({
@@ -109,7 +136,16 @@ export const GlobalProvider = ({ children }) => {
 
     async function addProfile(user) {
         try {
-            const res = await axios.post(`${process.env.REACT_APP_BACKEND}/user/create`, user);
+            console.log(user)
+            const res = await axios.post(
+              `https://storm-gate.net/api/user/create`,
+              user,
+              {
+                headers: {
+                  "Access-Control-Allow-Origin": "*",
+                },
+              }
+            );
             window.location.href = "/";
             dispatch({
                 type: 'ADD_PROFILE',
@@ -125,7 +161,14 @@ export const GlobalProvider = ({ children }) => {
     }
     async function editProfile(id) {
         try {
-            const res = await axios.put(`${process.env.REACT_APP_BACKEND}/user/edit/${id}`);
+            const res = await axios.put(
+              `https://storm-gate.net/api/user/edit/${id}`,
+              {
+                headers: {
+                  "Access-Control-Allow-Origin": "*",
+                },
+              }
+            );
             window.location.href = "/";
             dispatch({
                 type: 'EDIT_PROFILE',
